@@ -41,12 +41,18 @@ class SettingsActivity : AppCompatActivity() {
 
         val reportButtonId = findViewById<LinearLayout>(R.id.reportButton)
         reportButtonId.setOnClickListener{
-            val reportIntent = Intent(Intent.ACTION_SENDTO)
-            reportIntent.data = Uri.parse("mailto:")
+
+
+            val reportIntent = Intent(Intent.ACTION_SEND)
 
             val subjectText = "Сообщение разработчикам и разработчицам приложения Playlist Maker"
             val text = "Спасибо разработчикам и разработчицам за крутое приложение!"
 
+
+            reportIntent.setType("message/rfc822")
+
+
+            reportIntent.putExtra(Intent.EXTRA_EMAIL, arrayOf("legoman056@gmail.com"))
             reportIntent.putExtra(Intent.EXTRA_SUBJECT, subjectText)
             reportIntent.putExtra(Intent.EXTRA_TEXT, text)
 
